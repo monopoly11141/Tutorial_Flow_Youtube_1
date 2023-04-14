@@ -21,6 +21,13 @@ class MainActivityViewModel : ViewModel() {
         }
     }
 
+    private val _stateFlow = MutableStateFlow(0)
+    val stateFlow = _stateFlow.asStateFlow()
+
+    fun incrementCounter() {
+        _stateFlow.value += 1
+    }
+
     init {
         collectFlow()
     }
@@ -45,22 +52,6 @@ class MainActivityViewModel : ViewModel() {
                 Log.d("MainActivityViewModel","String $str")
             }
 
-//            val foldResult = countDownFlow.fold(100){ accumulator, value ->
-//                accumulator - value
-//            }
-//            Log.d("MainActivityViewModel", "ReduceResult : $foldResult")
-//
-//            countDownFlow
-//                .filter{time ->
-//                    time % 2 == 0
-//                }
-//                .map{ time ->
-//                    time * time
-//                }
-//                .collect { time ->
-//                    delay(1000)
-//                    Log.d("MainActivityViewModel", "The Current Time is $time")
-//                }
         }
     }
 
